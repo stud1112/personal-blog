@@ -1,8 +1,8 @@
 <h2>Read the latest blog posts</h2>
-<dx-list id="list" [dataSource]="dataSource" [searchEnabled]="true" searchMode="contains" searchExpr="title"
+<dx-list id="list" [dataSource]="dataSource" [searchEnabled]="true" searchMode="contains" [searchExpr]="['title', 'description']"
     itemTemplate="listItem">
     <div *dxTemplate="let item of 'listItem'">
         <b>{{item.title}}</b><br />
-        <p>{{item.description}}</p>
+        <p>{{item.description | shorten:150 }}</p>
     </div>
 </dx-list>

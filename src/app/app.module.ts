@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NewsComponent } from './news/news.component';
 import { OpinionsComponent } from './opinions/opinions.component';
+import { ShortenPipe } from './shared/shorten.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NewsComponent,
-    OpinionsComponent
+    OpinionsComponent,
+    ShortenPipe,
   ],
   imports: [
     BrowserModule,
