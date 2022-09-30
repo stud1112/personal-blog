@@ -1,0 +1,7 @@
+<div class="post" *ngIf="(post$ | async) as post">
+    <br />
+    <b>{{post.title}}</b>
+    <br />
+    <p>{{post.description}}</p>
+    <a routerLink="/posts">Back to posts</a>
+</div>

@@ -3,11 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { NewsComponent } from './news/news.component';
 import { OpinionsComponent } from './opinions/opinions.component';
+import { PostDetailComponent } from './posts/post-detail/post-detail.component';
+import { PostsListComponent } from './posts/posts-list/posts-list.component';
 
 const routes: Routes = [
   {
-    path: 'home',
-    component: HomeComponent,
+    path: 'posts',
+    component: PostsListComponent,
+  },
+  {
+    path: 'posts/:id',
+    component: PostDetailComponent,
   },
   {
     path: 'news',
@@ -20,7 +26,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'home',
+    redirectTo: 'posts',
   },
 ];
 

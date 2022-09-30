@@ -1,19 +1,22 @@
-enum blogPostCategory {
+enum postCategory {
   News,
   Opinion,
 }
 
-export interface blogPost {
+export interface PostItem {
+  [index: number]: Object;
+}
+export interface Post {
   id: number;
   title: string;
   description: string;
   imageUrl?: string;
-  category: blogPostCategory;
+  category?: postCategory;
   author: string;
   timesReadCounter: number;
 }
 
-export const posts: blogPost[] = [
+export const posts: Post[] = [
     {
         id: 1,
         title: 'Παναθηναϊκός: Η προπόνηση τελείωσε, αλλά ο Αϊτόρ συνέχισε!',
@@ -25,7 +28,7 @@ export const posts: blogPost[] = [
         Για την ακρίβεια, μετά το τέλος της σημερινής προπόνησης, ο Αϊτόρ Κανταλαπιέδρα κάθισε και εξασκήθηκε στις εκτελέσεις φάουλ. \
         Άλλωστε όπως ανέφερε και στην αποκλειστική του συνέντευξη στο SDNA ο Ισπανός μέσος:  «Κι όταν τα πράγματα πηγαίνουν καλά, \
         τότε πρέπει να δουλέψεις ακόμα σκληρότερα για να βελτιωθείς»',
-        category: blogPostCategory.News,
+        category: postCategory.News,
         imageUrl: 'https://www.sdna.gr/sites/default/files/styles/main/public/2022-09/3603649.jpg?h=17e28838&itok=Cq7zVvk2',
         author: 'Θάνος Νικολογιάννης',
         timesReadCounter: 3
@@ -42,7 +45,7 @@ export const posts: blogPost[] = [
         Επιπρόσθετα, οι Έλληνες διεθνείς (Κουρμπέλης, Ιωαννίδης) επέστρεψαν στο Κορωπί και έκαναν αποθεραπεία, μιας και αγωνίστηκαν στη χθεσινή \
         αναμέτρηση της χώρας μας με την Βόρεια Ιρλανδία. Αξίζει να σημειωθεί ότι αύριο αναμένεται να επιστρέψουν \
         οι Σπόραρ, Τσέριν, Βέρμπιτς, Μάγκνουσον, Τσόκαϊ.',
-        category: blogPostCategory.News,
+        category: postCategory.News,
         imageUrl: 'https://www.sdna.gr/sites/default/files/styles/main/public/2022-09/3377968_161009.jpg?itok=EX9LWBQ9',
         author: 'Τάσος Νικολογιάννης',
         timesReadCounter: 13

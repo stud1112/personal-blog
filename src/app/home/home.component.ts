@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { DataService } from '../shared/data-service';
 
 @Component({
@@ -6,12 +7,7 @@ import { DataService } from '../shared/data-service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
-  dataSource: any;
-  constructor(private dataService: DataService) { }
-
-  ngOnInit(): void {
-    this.dataSource = this.dataService.getPosts();
-  }
+export class HomeComponent {
+  
 
 }

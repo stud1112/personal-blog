@@ -1,0 +1,14 @@
+<br>
+<br>
+<div id="indicator_wrap" *ngIf="!posts; else postsList">
+    <dx-load-indicator id="indicator" height="60" width="60"></dx-load-indicator>
+</div>
+<ng-template #postsList>
+    <dx-list id="list" [dataSource]="posts" [activeStateEnabled]="false" [hoverStateEnabled]="false" itemTemplate="listItem">
+        <div *dxTemplate="let item of 'listItem'">
+            <b><a [routerLink]="item.id">{{item.title}}</a></b>
+            <br />
+            <p>{{item.description | shorten:150 }}</p>
+        </div>
+    </dx-list>
+</ng-template>
