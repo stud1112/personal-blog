@@ -15,4 +15,11 @@ export class DataService {
     getPost(id: number): Observable<PostItem> {
         return this.http.get<PostItem>(`https://ng-personal-blog-default-rtdb.firebaseio.com/posts.json?orderBy="id"&startAt=${id}&endAt=${id}`);
     }
+
+    updatePost(post: Post) {
+        return this.http.put(
+            `https://ng-personal-blog-default-rtdb.firebaseio.com/posts/${post.id}.json`,
+            post
+          );
+    }
 }

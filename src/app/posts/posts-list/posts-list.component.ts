@@ -19,4 +19,9 @@ export class PostsListComponent implements OnInit {
   ngOnDestroy(): void {
     this.postsSub!.unsubscribe();
   }
+
+  getPath(id: number) {
+    const isAdmin = true;
+    return !isAdmin ? id : `${id}/edit`;
+  }
 }

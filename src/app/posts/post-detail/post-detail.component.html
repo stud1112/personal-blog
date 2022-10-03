@@ -1,7 +1,11 @@
-<div class="post" *ngIf="(post$ | async) as post">
+<div class="post" *ngIf="(post$ | async) as post; else loading">
     <br />
     <b>{{post.title}}</b>
     <br />
     <p>{{post.description}}</p>
-    <a routerLink="/posts">Back to posts</a>
+    <a routerLink="/posts">Back to posts</a>    
 </div>
+<ng-template #loading>
+    <app-loading >
+    </app-loading>
+</ng-template>

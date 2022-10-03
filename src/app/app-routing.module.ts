@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { NewsComponent } from './news/news.component';
 import { OpinionsComponent } from './opinions/opinions.component';
 import { PostDetailComponent } from './posts/post-detail/post-detail.component';
+import { PostEditComponent } from './posts/post-edit/post-edit.component';
 import { PostsListComponent } from './posts/posts-list/posts-list.component';
 
 const routes: Routes = [
@@ -13,7 +14,11 @@ const routes: Routes = [
   },
   {
     path: 'posts/:id',
-    component: PostDetailComponent,
+    component: PostDetailComponent
+  },
+  {
+    path: 'posts/:id/edit',
+    component: PostEditComponent
   },
   {
     path: 'news',

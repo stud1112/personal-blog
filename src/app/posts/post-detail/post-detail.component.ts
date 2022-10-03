@@ -12,7 +12,6 @@ import { DataService } from 'src/app/shared/data-service';
 })
 export class PostDetailComponent implements OnInit {
   postId: number;
-  post: Post;
   post$: Observable<Post>;
   constructor(
     private route: ActivatedRoute,
@@ -20,13 +19,9 @@ export class PostDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.post$ = this.dataService.getPost(+this.route.snapshot.paramMap.get('id')!);
     this.postId = +this.route.snapshot.paramMap.get('id')!;
     this.post$ = this.dataService
       .getPost(this.postId)
       .pipe(map((p) => p[this.postId])) as Observable<Post>;
-    // this.dataService.getPost(this.postId).subscribe((post: PostItem) => {
-    //   console.log(post[this.postId]);
-    // });
-  }
+  }  
 }

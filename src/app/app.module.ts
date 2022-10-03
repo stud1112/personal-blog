@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { DxLoadIndicatorModule, DxTabsModule } from 'devextreme-angular';
+import { DxButtonModule, DxFormModule, DxLoadIndicatorModule, DxTabsModule, DxTextAreaModule } from 'devextreme-angular';
 import { DxListModule } from 'devextreme-angular';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +12,8 @@ import { OpinionsComponent } from './opinions/opinions.component';
 import { ShortenPipe } from './shared/shorten.pipe';
 import { PostsListComponent } from './posts/posts-list/posts-list.component';
 import { PostDetailComponent } from './posts/post-detail/post-detail.component';
+import { LoadingComponent } from './loading/loading.component';
+import { PostEditComponent } from './posts/post-edit/post-edit.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { PostDetailComponent } from './posts/post-detail/post-detail.component';
     ShortenPipe,
     PostsListComponent,
     PostDetailComponent,
+    LoadingComponent,
+    PostEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +33,10 @@ import { PostDetailComponent } from './posts/post-detail/post-detail.component';
     AppRoutingModule,
     DxTabsModule,
     DxListModule,
-    DxLoadIndicatorModule
+    DxLoadIndicatorModule,
+    DxFormModule,
+    DxTextAreaModule,
+    DxButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
