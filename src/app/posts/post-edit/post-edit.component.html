@@ -1,9 +1,7 @@
-<div *ngIf="(post$ | async) as post; else loading">
+<!-- <ng-container *ngIf="(post$ | async) as post; else loading" #main> -->
+<ng-container *ngIf="post; else loading">
     <dx-form [formData]="post">
-        <!-- <dxi-item name="back">
-            <a routerLink="/posts"> <- Back to posts</a>
-        </dxi-item>
-         --><dxi-item dataField="title"></dxi-item>
+        <dxi-item dataField="title"></dxi-item>
         <dxi-item dataField="description" editorType="dxTextArea" [editorOptions]="{ height: 150 }"></dxi-item>
         <dxi-item dataField="imageUrl"></dxi-item>
         <dxi-item dataField="author"></dxi-item>
@@ -11,10 +9,10 @@
         <dxi-item itemType="empty"></dxi-item>
     </dx-form>
     <div class="btnGroup">
-        <dx-button text="Update" stylingMode="outlined" (onClick)="updatePost(post)" ></dx-button>
-        <dx-button text="Cancel" stylingMode="contained" (onClick)="router.navigate(['/posts']);" ></dx-button>        
+        <dx-button text="Update" stylingMode="outlined" (onClick)="updatePost(post)"></dx-button>
+        <dx-button text="Cancel" stylingMode="contained" (onClick)="router.navigate(['/posts']);"></dx-button>
     </div>
-</div>
+</ng-container>
 <ng-template #loading>
     <app-loading></app-loading>
 </ng-template>

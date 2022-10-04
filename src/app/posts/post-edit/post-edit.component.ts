@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { Post } from 'src/app/shared/data-model';
@@ -14,34 +14,41 @@ export class PostEditComponent implements OnInit, OnDestroy {
   editMode: boolean = false;
   postId: number;
   post$: Observable<Post>;
-  // post: Post;
+  post: Post | null;
   postSub: Subscription;
-  constructor(private route: ActivatedRoute, private router: Router, private ds: DataService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private ds: DataService,
+    private vref: ViewContainerRef
+  ) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.editMode = id !== null;
     if (this.editMode) {
       this.postId = +id!;
-      // this.postSub = (
-      //   this.ds
-      //     .getPost(this.postId)
-      //     .pipe(map((p) => p[this.postId])) as Observable<Post>
-      // ).subscribe((post) => {
-      //   console.log(post);
-      //   this.post = post;
-      // });
-      this.post$ = this.ds
-        .getPost(this.postId)
-        .pipe(map((p) => p[this.postId])) as Observable<Post>;
+      this.postSub = (
+        this.ds
+          .getPost(this.postId)
+          .pipe(map((p) => p[this.postId])) as Observable<Post>
+      ).subscribe((post) => {
+        this.post = post;
+      });
+      // this.post$ = this.ds
+      //   .getPost(this.postId)
+      //   .pipe(map((p) => p[this.postId])) as Observable<Post>;
     }
   }
 
   ngOnDestroy(): void {
-    // this.postSub.unsubscribe();
+    this.postSub.unsubscribe();
   }
 
   updatePost(post: Post) {
-    this.ds.updatePost(post).subscribe(() => this.router.navigate(['/posts']));
+    this.post = null;
+    this.ds.updatePost(post).subscribe(() => {
+      this.router.navigate(['/posts']);
+    });
   }
 }
