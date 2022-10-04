@@ -3,9 +3,19 @@ enum postCategory {
   Opinion,
 }
 
+enum userRole {
+  Admin
+}
+
 export interface PostItem {
   [index: number]: Object;
 }
+
+export interface User {
+  email: string;
+  role: userRole | string;
+}
+
 export interface Post {
   id: number;
   title: string;

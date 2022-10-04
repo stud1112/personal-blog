@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { UrlSerializer } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/shared/data-service';
+import { User } from 'src/app/shared/data-model';
 
 @Component({
   selector: 'app-posts-list',

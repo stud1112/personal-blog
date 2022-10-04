@@ -1,3 +1,12 @@
-<app-posts-list></app-posts-list>
-
-<!-- [searchEnabled]="true" searchMode="contains" [searchExpr]="['title', 'description']" -->
+<dx-tabs>
+    <dxi-item>Home
+        <a routerLink="posts"></a>
+    </dxi-item>
+    <dxi-item>News
+        <a routerLink="news"></a>
+    </dxi-item>
+    <dxi-item>Opinions
+        <a routerLink="opinions"></a>
+    </dxi-item>
+</dx-tabs>
+<router-outlet></router-outlet>

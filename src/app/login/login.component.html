@@ -1,0 +1,15 @@
+<form class="form" (submit)="onLogin($event)">
+    <h1>Admin login</h1>
+    <dx-form [formData]="formData">
+        <dxi-item dataField="email" placeholder="Email" editorType="dxTextBox"
+            [editorOptions]="{ stylingMode: '', placeholder: 'Email'}">
+            <dxo-label [visible]="false"></dxo-label>
+        </dxi-item>
+        <dxi-item dataField="password" placeholder="Password" editorType="dxTextBox"
+            [editorOptions]="{ stylingMode: 'filled', placeholder: 'Password', mode: 'password' }">
+            <dxo-label [visible]="false"></dxo-label>
+        </dxi-item>
+        <dxi-item itemType="button" [buttonOptions]="submitButtonOptions">
+        </dxi-item>
+    </dx-form>
+</form>

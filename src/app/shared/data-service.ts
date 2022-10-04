@@ -1,12 +1,17 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { Post, PostItem, posts } from './data-model';
+import { BehaviorSubject, Observable } from "rxjs";
+import { Post, PostItem, User } from './data-model';
 
 @Injectable({providedIn: 'root'})
 export class DataService {
+    private _user = new BehaviorSubject<User>(null);
 
     constructor(private http: HttpClient) { }
+
+    get user() {
+        return this._user.value;
+    }
 
     getPosts() {
         return this.http.get<Post[]>(`https://ng-personal-blog-default-rtdb.firebaseio.com/posts.json`);
