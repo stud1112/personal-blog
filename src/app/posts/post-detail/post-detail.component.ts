@@ -23,5 +23,5 @@ export class PostDetailComponent implements OnInit {
     this.post$ = this.dataService
       .getPost(this.postId)
       .pipe(map((p) => p[this.postId])) as Observable<Post>;
-  }  
+  }
 }

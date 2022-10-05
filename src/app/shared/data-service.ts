@@ -27,4 +27,12 @@ export class DataService {
             post
           );
     }
+
+    requestLogin(email: string, password: string) {
+        if (email === 't@t.c' && password === '1') {
+            this._user.next({ email: 'test', role: 'admin' });
+            return 1;
+        }
+        return 0;
+    }
 }

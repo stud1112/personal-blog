@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UrlSerializer } from '@angular/router';
+import { Router, UrlSerializer } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/shared/data-service';
 import { User } from 'src/app/shared/data-model';
@@ -10,12 +10,14 @@ import { User } from 'src/app/shared/data-model';
   styleUrls: ['./posts-list.component.scss']
 })
 export class PostsListComponent implements OnInit {
+  isLoggedIn: boolean = false;
   posts: any;
   postsSub: Subscription | undefined;
-  constructor(private dataService: DataService) { }
+  constructor(private ds: DataService, private router: Router) { }
 
   ngOnInit(): void {
-    this.postsSub = this.dataService.getPosts().subscribe(posts => this.posts = posts);
+    this.isLoggedIn = (this.ds.user !== null);
+    this.postsSub = this.ds.getPosts().subscribe(posts => this.posts = posts);    
   }
 
   ngOnDestroy(): void {
@@ -23,7 +25,11 @@ export class PostsListComponent implements OnInit {
   }
 
   getPath(id: number) {
-    const isAdmin = true;
-    return !isAdmin ? id : `${id}/edit`;
+    return !this.isLoggedIn ? id : `${id}/edit`;
+    // return !isAdmin ? id : `${id}`;
+  }
+
+  addPost() {
+    this.router.navigate(['/posts/add']);
   }
 }

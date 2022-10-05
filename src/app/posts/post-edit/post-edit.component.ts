@@ -42,7 +42,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.postSub.unsubscribe();
+    this.postSub?.unsubscribe();
   }
 
   updatePost(post: Post) {

@@ -23,6 +23,10 @@ const routes: Routes = [
         component: PostsListComponent,
       },
       {
+        path: 'posts/add',
+        component: PostEditComponent,
+      },
+      {
         path: 'posts/:id',
         component: PostDetailComponent
       },

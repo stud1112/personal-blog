@@ -1,5 +1,5 @@
 <!-- <ng-container *ngIf="(post$ | async) as post; else loading" #main> -->
-<ng-container *ngIf="post; else loading">
+<ng-container *ngIf="(!editMode || post); else loading">
     <dx-form [formData]="post">
         <dxi-item dataField="title"></dxi-item>
         <dxi-item dataField="description" editorType="dxTextArea" [editorOptions]="{ height: 150 }"></dxi-item>
