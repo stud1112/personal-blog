@@ -54,6 +54,10 @@ export class PostEditComponent implements OnInit, OnDestroy {
 
   goBack = () => this.router.navigate(['/posts']);
 
+  get postLoaded() {
+    return this.post.hasOwnProperty("id");
+  }
+
   cancelButtonOptions = {
     text: 'Cancel',
     useSubmitBehavior: false,

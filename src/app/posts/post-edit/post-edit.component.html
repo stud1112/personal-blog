@@ -1,5 +1,5 @@
 <!-- <ng-container *ngIf="(post$ | async) as post; else loading" #main> -->
-<ng-container *ngIf="!editMode || post.title; else loading">
+<ng-container *ngIf="!editMode || postLoaded; else loading">
     <form class="form" (submit)="updatePost($event)">
         <dx-form [formData]="post" [colCount]="10">
             <dxi-item dataField="title" [colSpan]="10">
