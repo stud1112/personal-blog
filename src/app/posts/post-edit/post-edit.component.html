@@ -1,17 +1,32 @@
 <!-- <ng-container *ngIf="(post$ | async) as post; else loading" #main> -->
-<ng-container *ngIf="(!editMode || post); else loading">
-    <dx-form [formData]="post">
-        <dxi-item dataField="title"></dxi-item>
-        <dxi-item dataField="description" editorType="dxTextArea" [editorOptions]="{ height: 150 }"></dxi-item>
-        <dxi-item dataField="imageUrl"></dxi-item>
-        <dxi-item dataField="author"></dxi-item>
-        <dxi-item dataField="timesReadCounter" [disabled]="true"></dxi-item>
-        <dxi-item itemType="empty"></dxi-item>
-    </dx-form>
-    <div class="btnGroup">
+<ng-container *ngIf="!editMode || post.title; else loading">
+    <form class="form" (submit)="updatePost($event)">
+        <dx-form [formData]="post" [colCount]="10">
+            <dxi-item dataField="title" [colSpan]="10">
+                <dxi-validation-rule type="required" message="Title is required"></dxi-validation-rule>
+            </dxi-item>
+            <dxi-item dataField="description" editorType="dxTextArea" [editorOptions]="{ height: 150 }" [colSpan]="10">
+                <dxi-validation-rule type="required" message="Description is required"></dxi-validation-rule>
+            </dxi-item>
+            <dxi-item dataField="imageUrl" [colSpan]="10">
+                <dxi-validation-rule type="required" message="Image URL is required"></dxi-validation-rule>
+            </dxi-item>
+            <dxi-item dataField="author" [colSpan]="10"></dxi-item>
+            <dxi-item *ngIf="editMode" dataField="timesReadCounter" [disabled]="true" [colSpan]="10"></dxi-item>
+            <dxi-item itemType="empty" [colSpan]="10">
+            </dxi-item>
+            <dxi-item itemType="empty" [colSpan]="4">
+            </dxi-item>
+            <dxi-item itemType="button" [buttonOptions]="updateButtonOptions" [colSpan]="1">
+            </dxi-item>
+            <dxi-item itemType="button" [buttonOptions]="cancelButtonOptions" [colSpan]="1">
+            </dxi-item>
+        </dx-form>
+    </form>    
+    <!-- <div class="btnGroup">
         <dx-button text="Update" stylingMode="outlined" (onClick)="updatePost(post)"></dx-button>
         <dx-button text="Cancel" stylingMode="contained" (onClick)="router.navigate(['/posts']);"></dx-button>
-    </div>
+    </div> -->
 </ng-container>
 <ng-template #loading>
     <app-loading></app-loading>

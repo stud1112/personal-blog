@@ -17,7 +17,9 @@ export class PostsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedIn = (this.ds.user !== null);
-    this.postsSub = this.ds.getPosts().subscribe(posts => this.posts = posts);    
+    this.postsSub = this.ds.getPosts().subscribe(posts => {
+      this.posts = (posts ? posts : []);
+    });    
   }
 
   ngOnDestroy(): void {

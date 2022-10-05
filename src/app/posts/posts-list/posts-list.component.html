@@ -1,13 +1,13 @@
 <app-loading *ngIf="!posts; else postsList">
 </app-loading>
 <ng-template #postsList>
-    <div *ngIf="!isLoggedIn">
+    <div *ngIf="isLoggedIn">
         <br>
         <dx-button text="Add post" icon="add" (onClick)="addPost()"></dx-button>
         <br>
         <br>
     </div>
-    <br *ngIf="isLoggedIn">
+    <br *ngIf="!isLoggedIn">
     <dx-list id="list" [searchEnabled]="true" [searchExpr]="['title', 'description']" [dataSource]="posts"
         [activeStateEnabled]="false" [hoverStateEnabled]="false" itemTemplate="listItem">
         <div *dxTemplate="let item of 'listItem'">

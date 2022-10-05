@@ -11,10 +11,11 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./post-edit.component.scss'],
 })
 export class PostEditComponent implements OnInit, OnDestroy {
-  editMode: boolean = false;
+  editMode: boolean = true;
   postId: number;
-  post$: Observable<Post>;
-  post: Post | null;
+  // post$: Observable<Post>;
+  // post: Post | null;
+  post: any = {};
   postSub: Subscription;
   constructor(
     private route: ActivatedRoute,
@@ -45,10 +46,30 @@ export class PostEditComponent implements OnInit, OnDestroy {
     this.postSub?.unsubscribe();
   }
 
-  updatePost(post: Post) {
-    this.post = null;
-    this.ds.updatePost(post).subscribe(() => {
-      this.router.navigate(['/posts']);
-    });
+  updateButtonOptions = {
+    text: 'Update',
+    type: 'success',
+    useSubmitBehavior: true,
+  };
+
+  goBack = () => this.router.navigate(['/posts']);
+
+  cancelButtonOptions = {
+    text: 'Cancel',
+    useSubmitBehavior: false,
+    onClick: () => this.goBack()
+  };
+
+  updatePost(e: Event) {
+    e.preventDefault();
+    const post = this.post;
+    // this.post = null;
+    if (this.editMode) {
+      console.log(post);
+      this.ds.updatePost(post).subscribe(() => this.goBack());
+    } else {
+      const { title, description, imageUrl, author } = post;
+      this.ds.addPost(title, description, imageUrl, author).subscribe(() => this.goBack());
+    }
   }
 }

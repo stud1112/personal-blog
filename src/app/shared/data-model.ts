@@ -17,18 +17,18 @@ export interface User {
 }
 
 export interface Post {
-  id: number;
+  id?: string;
   title: string;
   description: string;
   imageUrl?: string;
   category?: postCategory;
-  author: string;
-  timesReadCounter: number;
+  author?: string;
+  timesReadCounter?: number;
 }
 
 export const posts: Post[] = [
     {
-        id: 1,
+        id: '1',
         title: 'Παναθηναϊκός: Η προπόνηση τελείωσε, αλλά ο Αϊτόρ συνέχισε!',
         description: 'Ο Ισπανός εξτρέμ είναι ο απόλυτος πρωταγωνιστής του Παναθηναϊκού \
         στις πρώτες πέντε αγωνιστικές του πρωταθλήματος έχοντας μάλιστα πετύχει πέντε γκολ \
@@ -44,7 +44,7 @@ export const posts: Post[] = [
         timesReadCounter: 3
     },
     {
-        id: 2,
+        id: '2',
         title: 'Παναθηναϊκός: Επέστρεψε στις προπονήσεις ο Κώτσιρας και.... φουλάρει για Τούμπα!',
         description: 'Ο Γιάννης Κώτσιρας επέστρεψε σε κανονικό ρυθμό προπονήσεων και ανεβάζει στροφές προκειμένου να είναι \
         έτοιμος για Τούμπα. Μπήκε κανονικά και ο Παλάσιος. Την προετοιμασία του για την αναμέτρηση με τον ΠΑΟΚ συνέχισε την \
