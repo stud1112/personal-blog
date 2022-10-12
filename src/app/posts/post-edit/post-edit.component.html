@@ -19,10 +19,12 @@
             </dxi-item>
             <dxi-item itemType="button" [buttonOptions]="updateButtonOptions" [colSpan]="1">
             </dxi-item>
+            <dxi-item itemType="button" *ngIf="editMode" [buttonOptions]="deleteButtonOptions" [colSpan]="1">
+            </dxi-item>
             <dxi-item itemType="button" [buttonOptions]="cancelButtonOptions" [colSpan]="1">
             </dxi-item>
         </dx-form>
-    </form>    
+    </form>
     <!-- <div class="btnGroup">
         <dx-button text="Update" stylingMode="outlined" (onClick)="updatePost(post)"></dx-button>
         <dx-button text="Cancel" stylingMode="contained" (onClick)="router.navigate(['/posts']);"></dx-button>
@@ -31,3 +33,17 @@
 <ng-template #loading>
     <app-loading></app-loading>
 </ng-template>
+<dx-popup [width]="300" [height]="180" title="Confirm delete" [dragEnabled]="false" [hideOnOutsideClick]="true"
+    [showCloseButton]="false" [(visible)]="popupVisible">
+    <app-loading [unsetHeight]="true" *ngIf="deleting; else deleteControls">
+    </app-loading>
+   <!--  <dx-load-indicator id="indicator" height="60" width="60"></dx-load-indicator> -->
+    <ng-template #deleteControls>
+        <p>Are you sure you want to delete the selected post ?</p>
+        <dxi-toolbar-item widget="dxButton" toolbar="bottom" location="before" [options]="deletePopupOKButtonOptions">
+        </dxi-toolbar-item>
+        <dxi-toolbar-item widget="dxButton" toolbar="bottom" location="after"
+            [options]="deletePopupCancelButtonOptions">
+        </dxi-toolbar-item>
+    </ng-template>
+</dx-popup>

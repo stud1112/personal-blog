@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Post, PostItem, User } from './data-model';
+import { map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class DataService {
@@ -16,12 +17,21 @@ export class DataService {
   getPosts() {
     return this.http.get<Post[]>(
       `https://ng-personal-blog-default-rtdb.firebaseio.com/posts.json`
-    );
+    ).pipe(map(posts => {
+      const p = [];
+      let idx = 0;
+      for (const key in posts) {
+        p[idx] = posts[key];
+        p[idx++].id = key;
+      }
+      return p;
+    }));
   }
 
-  getPost(id: number): Observable<PostItem> {
+  getPost(id: string): Observable<PostItem> {
     return this.http.get<PostItem>(
-      `https://ng-personal-blog-default-rtdb.firebaseio.com/posts.json?orderBy="id"&startAt=${id}&endAt=${id}`
+      // `https://ng-personal-blog-default-rtdb.firebaseio.com/posts.json?orderBy="id"&startAt=${id}&endAt=${id}`
+      `https://ng-personal-blog-default-rtdb.firebaseio.com/posts.json?orderBy="$key"&startAt="${id}"&endAt="${id}"`
     );
   }
 
@@ -41,12 +51,19 @@ export class DataService {
       `https://ng-personal-blog-default-rtdb.firebaseio.com/posts.json`,
       newPost
     );
+    // return of(null);
   }
 
   updatePost(post: Post) {
     return this.http.put(
       `https://ng-personal-blog-default-rtdb.firebaseio.com/posts/${post.id}.json`,
       post
+    );
+  }
+
+  deletePost(post: Post) {
+    return this.http.delete(
+      `https://ng-personal-blog-default-rtdb.firebaseio.com/posts/${post.id}.json`
     );
   }
 
